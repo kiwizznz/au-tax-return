@@ -336,9 +336,11 @@ The Gmail MCP connector may not support downloading attachments directly. The pr
 ```markdown
 # Receipts to Download — FY {YEAR}
 
-Download the attachment from each email below and save it to the
-`receipts-to-sort/` folder. Then run `/tax-sort-receipts` to organise
-them into the correct categories.
+Download the attachment from each email below and save it to:
+    {full path to tax-return-FY{YEAR}}/receipts-to-sort/
+
+Once all attachments are downloaded, run `/tax-sort-receipts` to
+automatically organise them into the correct categories.
 
 ## Has Attachment (download these)
 - [ ] [Apple — MacBook Pro — $3,999 — 15/09/2024](https://mail.google.com/mail/u/0/#inbox/abc123) → PDF invoice
@@ -358,6 +360,7 @@ them into the correct categories.
 
 Use the Bash tool to create the directory structure:
 ```bash
+mkdir -p "tax-return-FY{YEAR}/receipts-to-sort"
 mkdir -p "tax-return-FY{YEAR}/receipts/D1-car-expenses"
 mkdir -p "tax-return-FY{YEAR}/receipts/D3-memberships"
 mkdir -p "tax-return-FY{YEAR}/receipts/D4-self-education"
@@ -366,7 +369,10 @@ mkdir -p "tax-return-FY{YEAR}/receipts/D9-donations"
 mkdir -p "tax-return-FY{YEAR}/receipts/D15-income-protection"
 ```
 
-Only create category subfolders for categories where items were actually found.
+Only create `receipts/` category subfolders for categories where items were actually found. Always create `receipts-to-sort/`.
+
+After creating the folder, tell the user the full path clearly:
+> "Your tax return folder is at `{full absolute path}/tax-return-FY{YEAR}/`. Download your receipt attachments from the links in `email-references.md` and save them to the `receipts-to-sort/` subfolder. When you're done, run `/tax-sort-receipts` to organise them."
 
 ## Step 7: Prepare for Accountant Handoff
 
