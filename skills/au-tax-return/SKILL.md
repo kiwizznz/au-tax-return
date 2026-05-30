@@ -98,7 +98,7 @@ has:attachment filename:pdf subject:(invoice OR receipt OR "tax invoice") after:
 
 From these results, build a raw candidate list from the metadata (subject, sender, date). This is your universe of potential deductions.
 
-### Phase 2: Read Each Candidate
+### Phase 2: Read Each Candidate (with User Interaction)
 
 **Do NOT guess what an item is from the subject line alone.** Subject lines like "Order Confirmation" or "Your receipt" don't tell you what was purchased.
 
@@ -107,12 +107,21 @@ For every candidate from Phase 1, read the email body to extract:
 - **The dollar amount**
 - **Whether the email has file attachments** (PDF invoice, receipt image)
 
+**Be interactive as you go.** After each batch, share what you found with the user. This keeps them in the loop and catches mistakes early:
+
+- **Clear items** (e.g., "Apple receipt — MacBook Pro 16" M4, $3,999"): add to the list and mention them briefly: "Found your MacBook Pro purchase from Apple — $3,999 on 15 Sep."
+- **Uncertain items** — if you can't tell what something is, what it cost, or whether it's work-related, **ask immediately** rather than guessing: "I found a receipt from Umart for $649 — looks like a 'UDM-SE' but I'm not sure what that is. Can you tell me what you bought?"
+- **Ambiguous work-relevance** — if something could be personal or work-related, ask: "Found a $299 purchase from JB Hi-Fi for a Sonos speaker — is this something you use for work, or personal?"
+- **Duplicates/refunds** — if you see what looks like a refund or duplicate charge, flag it: "I see two charges from Adobe — $52.99 on July 3 and $52.99 on Aug 3. These look like monthly subscription payments — should I include all 12 months?"
+
+**Do not silently add uncertain items to the list.** The user is right there — use them. A quick question now saves their accountant chasing clarifications later.
+
 Build a verified list:
 ```
 Item Description | Vendor | Date | Amount | Has Attachment? | Email ID/Reference
 ```
 
-Process candidates in batches of 10-15 to manage context. After reading a batch, record the extracted details in your running tally, then move to the next batch. Don't hold all email bodies in context at once.
+Process candidates in batches of 10-15 to manage context. After reading a batch, share findings with the user, ask about unclear items, then move to the next batch.
 
 ### Phase 3: Targeted Gap-Filling
 
