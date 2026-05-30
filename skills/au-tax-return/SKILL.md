@@ -2,16 +2,13 @@
 name: au-tax-return
 description: >
   Australian tax return documentation assistant. Scans Gmail for receipts and invoices, categorises potential
-  work-related expenses by ATO deduction category, and saves a complete folder of organised documentation
-  ready to review with your accountant. If the user has rental or investment properties, also identifies
-  property-related income and expenses including Division 40 plant & equipment, Division 43 capital works,
-  borrowing costs, and cost base records for CGT. Includes industry-specific guidance — starting with IT/tech
-  professionals, with more industries being added by the community. Use this skill whenever the user
-  mentions Australian tax return, tax deductions, tax time, ATO, organising work expenses, rental property
-  deductions, investment property, preparing tax documentation, or anything related to an Australian individual
-  tax return — even if they just say "do my tax" or "tax time". Also use when the user asks about work-from-home
-  deductions, self-education expenses, depreciation of work equipment, or rental property expenses in an
-  Australian tax context. The /tax command invokes this skill directly.
+  work-related expenses by ATO deduction category, and saves an organised folder ready to review with your
+  accountant. For rental or investment properties, also identifies property income and expenses including
+  Division 40 plant & equipment, Division 43 capital works, borrowing costs, and cost base records for CGT.
+  Includes industry-specific guidance, starting with IT/tech professionals. Use whenever the user mentions an
+  Australian tax return, tax deductions, tax time, the ATO, work-from-home or self-education deductions,
+  depreciation of work equipment, or rental/investment property deductions, or says things like "do my tax" —
+  or when they run the /tax command, which invokes this skill directly.
 ---
 
 # Australian Tax Return Assistant
