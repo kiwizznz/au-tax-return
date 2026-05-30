@@ -1,0 +1,10 @@
+{
+  "name": "au-tax-return",
+  "version": "1.0.0",
+  "description": "Australian tax return assistant. Scans Gmail for receipts, identifies deductions using ATO rules, and produces a complete folder ready to send to your accountant. Includes industry-specific guidance starting with IT/tech, with community-contributed industry guides.",
+  "author": {
+    "name": "Chris"
+  },
+  "license": "MIT",
+  "keywords": ["tax", "australia", "ato", "deductions", "gmail", "accountant", "tax-return"]
+}
