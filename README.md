@@ -13,13 +13,17 @@ A Claude Code plugin that helps Australian workers organise their tax-related re
 
 The goal: you ask Claude to do your tax, answer a few questions, and walk away with a folder ready to send to your accountant.
 
-## Industry Guides
+## Extending the Plugin
 
-The plugin includes industry-specific guidance for common deductions and email search patterns. Currently available:
+Specialisation is organised along two community-extensible axes — a single return can draw on modules from both:
 
+**Occupation guides** (`skills/au-tax-return/references/industries/`) — work-related deductions and email patterns for a job. Currently available:
 - **IT / Tech Professionals** — software engineers, developers, IT managers, data scientists, DevOps, cybersecurity, AI/ML engineers
 
-More industries can be added by the community — see [Contributing](#contributing).
+**Income-type modules** (`skills/au-tax-return/references/income-types/`) — additional income sources and their schedules. Currently available:
+- **Rental / investment property** — income, deductible expenses, depreciation (Div 40/43), borrowing costs, CGT
+
+Adding either is a drop-in file — no code or skill-description changes. See [Contributing](#contributing).
 
 ## Installation
 
@@ -99,14 +103,19 @@ tax-return-FY2024-25/
 
 ## Contributing
 
-We welcome contributions, especially new industry guides. To add support for a new industry:
+We welcome contributions, especially new modules along either axis:
 
+**A new occupation guide** (e.g. nurses, tradies, teachers):
 1. Copy `skills/au-tax-return/references/industries/_template.md`
-2. Fill in the industry-specific deductions, email search patterns, and common mistakes
+2. Fill in the occupation-specific deductions, email search patterns, and common mistakes
 3. Reference the relevant [ATO occupation guide](https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/guides-for-occupations-and-industries)
-4. Submit a pull request
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines.
+**A new income-type module** (e.g. sole trader/ABN, shares & CGT, crypto):
+1. Copy `skills/au-tax-return/references/income-types/_template.md`
+2. Fill in the income, deductible expenses, capital/CGT treatment, and email patterns
+3. Cite the relevant ATO resource
+
+Then submit a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines.
 
 ## Disclaimer
 

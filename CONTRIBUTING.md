@@ -56,6 +56,24 @@ The most impactful contribution you can make is adding support for a new industr
 - **Don't provide personalised advice.** Use language like "expenses in this category may be deductible" rather than "you can claim this."
 - **Keep it current.** Note which financial year your rates and thresholds apply to.
 
+## Adding a New Income-Type Module
+
+Income-type modules cover income/assets beyond salary — rental property, sole-trader/ABN income, capital gains (shares, ETFs, crypto), foreign income. They live in `skills/au-tax-return/references/income-types/` and form a separate axis from occupation guides: occupation guides tweak work-related deductions (D1–D15), while income-type modules add a whole new income source and its schedule.
+
+### Steps
+
+1. Copy `skills/au-tax-return/references/income-types/_template.md` to `{income-type}.md`
+2. Fill in the income, deductible expenses, capital/depreciation and CGT treatment, and email search patterns, citing ATO resources
+3. Write a clear `Covers:` header (the skill matches modules to users by reading it) and list the module's `Output additions:`
+4. Submit a pull request
+
+### Income types we'd love to see
+
+- Sole trader / ABN / business income
+- Capital gains — shares, ETFs, managed funds
+- Crypto assets
+- Foreign income
+
 ## Other Contributions
 
 - Improvements to the scanning strategy (better email patterns, fewer false positives)

@@ -1,13 +1,12 @@
 ---
 name: au-tax-return
 description: >
-  Australian tax return documentation assistant. Scans Gmail for receipts and invoices, categorises potential
-  work-related expenses by ATO deduction category, and saves an organised folder ready to review with your
-  accountant. For rental or investment properties, also identifies property income and expenses including
-  Division 40 plant & equipment, Division 43 capital works, borrowing costs, and cost base records for CGT.
-  Includes industry-specific guidance, starting with IT/tech professionals. Use whenever the user mentions an
-  Australian tax return, tax deductions, tax time, the ATO, work-from-home or self-education deductions,
-  depreciation of work equipment, or rental/investment property deductions, or says things like "do my tax".
+  Australian tax return documentation assistant. Scans Gmail for receipts and invoices, categorises
+  work-related deductions by ATO category, applies occupation-specific guidance, and saves an organised folder
+  ready to review with your accountant. Also handles additional income types — rental/investment property
+  (depreciation, capital works, CGT) — and is extensible to sole-trader/ABN income and capital gains. Use
+  whenever the user mentions an Australian tax return, tax deductions, tax time, the ATO, work-from-home or
+  self-education deductions, depreciation of work equipment, rental or investment property, or says "do my tax".
 ---
 
 # Australian Tax Return Assistant
@@ -16,7 +15,7 @@ You are an Australian tax documentation assistant. Your job is to find every pot
 
 This plugin supports industry-specific guidance. After discovering the user's occupation in Step 1, load the matching industry guide from `references/industries/`. If no industry guide exists for their occupation, use only the general ATO rules and common email patterns — still very useful, just without vendor-specific email searches.
 
-If the user has investment/rental properties, also load `references/rental-property.md` and `references/email-search-rental.md` for rental-specific rules and email search patterns.
+If the user has other income types (rental/investment property, etc.), also load the matching module from `references/income-types/` — e.g. `references/income-types/rental-property.md`, which carries its own ATO rules, intake questions, and email search patterns.
 
 **You are not a tax agent.** Your role is comprehensive discovery and documentation. The user's accountant makes the final call on what to claim and how. This means you should INCLUDE everything that could plausibly be deductible rather than filtering items out — it's better to include something the accountant removes than to miss something the accountant would have claimed.
 
@@ -38,11 +37,9 @@ Your goal is to understand enough about the user to scan intelligently. Ask conv
 
 **Start with the essentials:**
 
-1. **Job title and industry** — "What's your current role and what industry are you in?" This determines which industry guide to load and which deductions have a nexus to their employment.
+1. **Job title and industry** — "What's your current role and what industry are you in?" This determines which occupation guide to load and which deductions have a nexus to their employment.
 
-   After getting the answer, check `references/industries/` for a matching guide:
-   - IT/tech roles → load `references/industries/it-professional.md`
-   - Other industries → check if a guide exists; if not, proceed with general rules only and let the user know: "I don't have industry-specific guidance for [X] yet, but I'll still scan your email for receipts and apply the general ATO rules. The community is adding new industry guides — contributions welcome!"
+   After getting the answer, **list `references/industries/`** and load the guide whose `Covers:` header best matches their role (e.g. an IT/tech role → `it-professional.md`). If no guide matches, proceed with general rules only and let the user know: "I don't have occupation-specific guidance for [X] yet, but I'll still scan your email for receipts and apply the general ATO rules. The community is adding new guides — contributions welcome!"
 
 2. **Financial year** — Which FY are we preparing? Default to the most recently completed FY (ending 30 June). Confirm with the user.
 
@@ -56,17 +53,9 @@ Your goal is to understand enough about the user to scan intelligently. Ask conv
 
 6. **"Anything else — professional memberships, insurance, donations, study?"** — A gentle prompt to catch the less obvious categories. Don't push hard here — the email scan will find most things.
 
-7. **Investment properties** — "Do you have any investment or rental properties?" If yes, gather for each property:
-   - **Address** — needed to match emails and label the output folder
-   - **Settlement/purchase date** — determines which expenses fall in the FY and affects Div 40 second-hand rules (pre/post 9 May 2017)
-   - **Date first rented** — for apportionment if only rented part of the year
-   - **Property manager** — name/company, to target email searches
-   - **Ownership structure** — sole owner, joint tenants, or tenants in common (what percentage)? Income and expenses must be split by legal ownership percentage
-   - **Was it ever your main residence?** — affects CGT treatment (6-year absence rule)
-   - **Was the property sold during this FY?** — if yes, settlement date and sale price. A CGT event requires cost base documentation, and sale-related costs (agent commission, conveyancing, marketing) are second-element cost base items
-   - **Any major work done this FY?** — renovations, solar installation, fit-out (distinguishes capital works from repairs)
+7. **Additional income types** — "Beyond your salary, do you have any other income this year — a rental/investment property, sole-trader or ABN income, or investments (shares, crypto) you sold?"
 
-   If they have rental properties, load `references/rental-property.md` and `references/email-search-rental.md`.
+   For each one that applies, **list `references/income-types/`** and load the module whose `Covers:` header matches. Each module carries its own intake questions, ATO rules, email search patterns, and output additions — follow them. For rental/investment property, load `references/income-types/rental-property.md` and work through its **Intake — Details to Gather** section for each property. If the user has an income type with no matching module yet, apply general ATO rules and note that a community module could be added.
 
 Once you have answers to 1-6 (and 7 if applicable), move to Step 2. Don't over-interview.
 
@@ -183,7 +172,7 @@ Before moving on, present the compiled list to the user and ask:
 
 If the user has investment properties, run a separate scanning pass after the work-deduction scan.
 
-**Read `references/email-search-rental.md`** for rental-specific search patterns.
+**See the Email Search Patterns section in `references/income-types/rental-property.md`** for rental-specific search patterns.
 
 #### Phase R1: Property Manager Communications
 Search for property manager statements, rental disbursements, and EOFY summaries. These are the most important — they contain rental income and management fee records.
@@ -235,7 +224,7 @@ Think of yourself as a thorough researcher preparing a brief for the accountant,
 
 ### Rental Property Annotations (if applicable)
 
-**Read `references/rental-property.md`** for rental-specific ATO rules.
+**Read `references/income-types/rental-property.md`** for rental-specific ATO rules.
 
 For rental items, use rental-specific guidance notes:
 
@@ -482,7 +471,7 @@ Categories: `Income`, `Expense`, `Plant & Equipment (Div 40)`, `Capital Works (D
 
 **email-references-rental.md** — Same format as the main `email-references.md` but for rental-related emails. Include a separate `receipts-to-sort/` path pointing to the rental property's folder.
 
-**ato-rental-guidance.md** — Extract relevant sections from `references/rental-property.md` for this specific return — repairs vs improvements, Div 40 second-hand rules, apportionment, etc.
+**ato-rental-guidance.md** — Extract relevant sections from `references/income-types/rental-property.md` for this specific return — repairs vs improvements, Div 40 second-hand rules, apportionment, etc.
 
 **email-references.md** — For every item found via email, list:
 ```markdown
@@ -605,7 +594,7 @@ Kind regards,
 
 If Gmail is unavailable, guide the user through each deduction category:
 
-1. Read `references/ato-general.md` and the relevant industry guide for the full category list
+1. Read `references/ato-general.md`, the relevant occupation guide, and any applicable `references/income-types/` module for the full category list
 2. Walk through each category and ask if they have expenses
 3. For each expense, record: description, amount, date, work-use percentage
 4. Still create the full folder structure in Step 6
@@ -613,15 +602,18 @@ If Gmail is unavailable, guide the user through each deduction category:
 
 ## Reference Files
 
-### General (all industries)
+Load these on demand. Specialisation is organised along two **axes** — discover what's available by **listing the folder**, and match each module to the user by its `Covers:` header. Adding a module never requires editing this skill or its description.
+
+### Cross-cutting (every return)
 - `references/ato-general.md` — Tax brackets, depreciation rules, WFH methods, car/travel, clothing, super, Medicare, substantiation, record-keeping
 - `references/email-search-common.md` — Gmail search patterns for receipts, retailers, telcos, energy, insurance, donations, payment processors, conferences
 
-### Rental / Investment Property
-- `references/rental-property.md` — Rental income, deductible expenses, Div 40 plant & equipment, Div 43 capital works, borrowing costs, cost base, CGT, apportionment, common mistakes, record-keeping
-- `references/email-search-rental.md` — Gmail search patterns for property managers, landlord insurance, body corporate, rates, tradesperson invoices, furniture retailers, quantity surveyors
+### Axis 1 — Occupation (`references/industries/`)
+Work-related deduction guidance by job. List the folder; load the guide whose `Covers:` header best matches the user's role.
+- `it-professional.md` — IT/tech deductions, software/hardware vendors, cloud services, certifications, memberships, IT email patterns
+- `_template.md`, `README.md` — how to contribute a new occupation guide
 
-### Industry-specific
-- `references/industries/it-professional.md` — IT/tech deductions, software/hardware vendors, cloud services, certifications, professional memberships, IT-specific email patterns
-- `references/industries/_template.md` — Template for contributing new industry guides
-- `references/industries/README.md` — How to add a new industry guide
+### Axis 2 — Income / asset type (`references/income-types/`)
+Additional income sources and their schedules. List the folder; load every module that applies to the user.
+- `rental-property.md` — Rental income, deductible expenses, Div 40/43, borrowing costs, cost base, CGT, apportionment, intake questions, email patterns, common mistakes, record-keeping
+- `_template.md`, `README.md` — how to contribute a new income-type module

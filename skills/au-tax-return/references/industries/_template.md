@@ -6,7 +6,7 @@
 
 > **Citation date:** [Month Year]. Applies to FY[XXXX-XX] and FY[XXXX-XX]. Verify current rules at the ATO occupation guide link above.
 
-**Note:** Rental/investment property guidance is handled separately by `references/rental-property.md` — do not duplicate rental-specific content in industry guides.
+**Note:** Rental/investment property and other income types are handled separately by the `references/income-types/` modules (e.g. `income-types/rental-property.md`) — do not duplicate income-type content in occupation guides.
 
 ---
 
