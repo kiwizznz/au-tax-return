@@ -22,16 +22,23 @@ More industries can be added by the community — see [Contributing](#contributi
 
 ## Installation
 
-```bash
-claude plugin add kiwizznz/au-tax-return
-```
+### Claude Code (CLI)
 
-Or clone and install locally:
-
+Load the plugin from a local clone:
 ```bash
 git clone https://github.com/kiwizznz/au-tax-return.git
-claude plugin add ./au-tax-return
+claude --plugin-dir ./au-tax-return
 ```
+
+Or download the `.zip` from [Releases](https://github.com/kiwizznz/au-tax-return/releases) and load it directly:
+```bash
+claude --plugin-dir ~/Downloads/au-tax-return.zip
+```
+
+### Claude Desktop / Cowork App
+
+1. Download `au-tax-return.zip` from [Releases](https://github.com/kiwizznz/au-tax-return/releases)
+2. In the app, add the plugin via the `.zip` file
 
 ## Usage
 
