@@ -68,54 +68,100 @@ The built-in Gmail MCP connector provides email search and reading capabilities.
 
 If Gmail is unavailable or the user declines, switch to **Manual Mode** (see below) — walk through each deduction category verbally.
 
-## Step 3: Scan Emails (Metadata-First Strategy)
+## Step 3: Scan Emails (Broad Sweep, Then Deep Dive)
 
-This is the critical step. The user may have 100,000+ emails in their inbox. You need to find the 1-2% that are purchase receipts without blowing through your context window.
+This is the critical step. The user may have 100,000+ emails in their inbox. You need to find the 1-2% that are purchase receipts without missing anything important.
 
-**Read `references/email-search-common.md`** for common receipt patterns that apply to all workers. **Then read the industry-specific file** (e.g., `references/industries/it-professional.md`) for vendor-specific email patterns relevant to the user's occupation.
+**Read `references/email-search-common.md`** for common receipt patterns. **Then read the industry-specific file** (e.g., `references/industries/it-professional.md`) for vendor-specific patterns.
 
-### The Metadata-First Rule
+### Strategy: Find Everything First, Categorise Second
 
-**During the scanning phase, extract ONLY metadata from search results: subject line, sender, and date.** Do not read full email bodies during scanning. Build your candidate list from metadata alone — subject lines like "Your receipt from Apple" or "Payment confirmation — JetBrains" already tell you what you need.
+Do NOT start with vendor-specific or category-specific searches. Start with the broadest possible search for ALL purchases, receipts, and invoices. Then read each candidate to understand what it actually is.
 
-Only open individual emails (read their body) when:
-- The dollar amount isn't visible in the subject/snippet and you need it
-- You need to check whether the email has file attachments (PDFs, images)
-- The subject is ambiguous and you need to determine if it's a purchase
+### Phase 1: Broad Sweep
 
-### Scanning sequence
+Run the broadest receipt/invoice search for the financial year:
 
-1. **Replace date placeholders** in all queries from `references/email-search-patterns.md` with the actual FY dates (e.g., `after:2024/07/01 before:2025/06/30`)
+```
+subject:(receipt OR invoice OR "tax invoice" OR "payment confirmation" OR "order confirmation" OR "payment receipt") after:YYYY/07/01 before:YYYY+1/06/30
+```
 
-2. **Start with mega queries** (broad sweeps from the reference file) to get a quick picture of receipt volume. This tells you how noisy the inbox is and whether you need to be more targeted.
+Then also run:
+```
+subject:(subscription OR renewal OR "recurring payment" OR "billing statement") after:YYYY/07/01 before:YYYY+1/06/30
+```
 
-3. **Then scan category by category**, in this priority order for IT workers:
-   - Technology hardware (laptops, monitors, peripherals)
-   - Software subscriptions (JetBrains, GitHub, Adobe, AI tools, etc.)
-   - Self-education (courses, certifications, conferences)
-   - Internet and phone bills
-   - Cloud services (AWS, Azure, GCP)
-   - Professional memberships (ACS, IEEE, ACM)
-   - Australian retailers (Officeworks, JB Hi-Fi, specialist IT retailers)
-   - Donations (DGR receipts)
-   - Income protection insurance
-   - Payment processors (PayPal, Stripe — catches routed subscription payments)
-   - Working-from-home related (energy bills, furniture purchases)
+And catch PDF invoices:
+```
+has:attachment filename:pdf subject:(invoice OR receipt OR "tax invoice") after:YYYY/07/01 before:YYYY+1/06/30
+```
 
-4. **For each search result, record metadata only:**
-   ```
-   Subject | Sender | Date | Has Attachment? | Notes
-   ```
+From these results, build a raw candidate list from the metadata (subject, sender, date). This is your universe of potential deductions.
 
-5. **After all category scans are complete**, you'll have a candidate list. Now do a second pass on candidates where you need more detail — read those specific emails to extract amounts.
+### Phase 2: Read Each Candidate
 
-6. **For emails with attachments** (PDF invoices, receipt images): note the email ID/reference so you can retrieve the attachment in Step 6 when saving to the local folder.
+**Do NOT guess what an item is from the subject line alone.** Subject lines like "Order Confirmation" or "Your receipt" don't tell you what was purchased.
+
+For every candidate from Phase 1, read the email body to extract:
+- **What was actually purchased** (the specific item or service name)
+- **The dollar amount**
+- **Whether the email has file attachments** (PDF invoice, receipt image)
+
+Build a verified list:
+```
+Item Description | Vendor | Date | Amount | Has Attachment? | Email ID/Reference
+```
+
+Process candidates in batches of 10-15 to manage context. After reading a batch, record the extracted details in your running tally, then move to the next batch. Don't hold all email bodies in context at once.
+
+### Phase 3: Targeted Gap-Filling
+
+After the broad sweep, run targeted searches for categories that often DON'T use standard receipt/invoice language in their subject lines:
+
+- **Telco/ISP bills** — often say "bill" or "statement" rather than "receipt":
+  ```
+  from:(telstra.com OR optus.com.au OR tpg.com.au OR aussiebroadband.com.au) after:YYYY/07/01 before:YYYY+1/06/30
+  ```
+
+- **Energy bills** (for WFH actual cost method):
+  ```
+  from:(originenergy.com.au OR agl.com.au OR energyaustralia.com.au) subject:(bill OR statement) after:YYYY/07/01 before:YYYY+1/06/30
+  ```
+
+- **Professional memberships** — renewal notices, not receipts:
+  ```
+  subject:(membership OR renewal) from:(acs.org.au OR ieee.org OR acm.org) after:YYYY/07/01 before:YYYY+1/06/30
+  ```
+
+- **Donations** — thank-you emails, not receipts:
+  ```
+  subject:(donation OR "tax deductible" OR "deductible gift") after:YYYY/07/01 before:YYYY+1/06/30
+  ```
+
+- **Insurance premiums**:
+  ```
+  subject:("income protection" OR "salary continuance") after:YYYY/07/01 before:YYYY+1/06/30
+  ```
+
+- **Payment processors** (catches purchases routed through PayPal/Stripe):
+  ```
+  from:(paypal.com OR stripe.com) subject:(receipt OR payment) after:YYYY/07/01 before:YYYY+1/06/30
+  ```
+
+Read the industry-specific file (`references/industries/`) for additional vendor-specific searches relevant to the user's occupation. Only run these for gaps — items the broad sweep might have missed.
+
+### Phase 4: Cross-Check with User
+
+Before moving on, present the compiled list to the user and ask:
+- "Here's everything I found — does anything look wrong or missing?"
+- "I noticed receipts from [vendor] but couldn't determine the item — can you clarify?"
+- Specifically mention any high-value items the user said they purchased in Step 1 that you did NOT find in email
 
 ### Context window management
 
-- If a search returns more than ~30 results, it's too broad. Add more specific terms or narrow the sender list.
-- Never dump all search results into context at once. Process them in batches.
+- Process email reads in batches of 10-15 emails. Extract details, record them, then move to the next batch.
 - Your running tally should be a compact structured list, not full email content.
+- If a search returns more than ~50 results, it may include non-purchase emails. That's fine — read them and skip the irrelevant ones rather than narrowing the search and missing purchases.
 - If you're running low on context, summarise what you've found so far and continue.
 
 ## Step 4: Annotate with ATO Guidance
