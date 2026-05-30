@@ -22,23 +22,22 @@ More industries can be added by the community — see [Contributing](#contributi
 
 ## Installation
 
+### Claude Desktop / Cowork App
+
+```bash
+git clone https://github.com/kiwizznz/au-tax-return.git
+cd au-tax-return
+zip -r ../au-tax-return.zip . -x '.git/*' '.DS_Store'
+```
+
+Then in the app: **Customize > Personal plugins > + > Upload plugin** and select the `au-tax-return.zip` file.
+
 ### Claude Code (CLI)
 
-Load the plugin from a local clone:
 ```bash
 git clone https://github.com/kiwizznz/au-tax-return.git
 claude --plugin-dir ./au-tax-return
 ```
-
-Or download the `.zip` from [Releases](https://github.com/kiwizznz/au-tax-return/releases) and load it directly:
-```bash
-claude --plugin-dir ~/Downloads/au-tax-return.zip
-```
-
-### Claude Desktop / Cowork App
-
-1. Download `au-tax-return.zip` from [Releases](https://github.com/kiwizznz/au-tax-return/releases)
-2. In the app, add the plugin via the `.zip` file
 
 ## Usage
 
