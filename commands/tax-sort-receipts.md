@@ -27,7 +27,9 @@ If no tax return folder exists, tell the user to run `/tax` first.
 
 4. **Match it to an item in `deductions.csv`** by comparing vendor, amount, and date. If there's a clear match, move the file to the correct `receipts/D{X}-{category}/` subfolder with a clear name: `{vendor}-{brief-description}-{YYYYMMDD}.{ext}`
 
-5. **If no clear match**, ask the user:
+5. **If the receipt contradicts the CSV** (e.g., the CSV says "laptop" but the PDF is actually a router, or the amount is different), flag it to the user: "The CSV has this listed as 'Umart laptop — $649' but the receipt says 'Ubiquiti UDM Dream Machine (router) — $649'. Should I update the CSV to match the receipt?" Always trust the actual receipt over the CSV entry.
+
+6. **If no clear match**, ask the user:
    - "I found `receipt-12345.pdf` — it's a $649 invoice from Umart dated 22/10/2024. Which deduction does this belong to?" and offer the ATO categories as options.
    - If the item isn't in the CSV at all, ask if it should be added.
 
