@@ -11,7 +11,7 @@ A Claude Code plugin that helps Australian workers organise their tax-related re
 - Saves everything to a local folder — summary, CSV, receipt attachments, email references
 - Prepares a draft email to your accountant with all documentation attached
 
-The goal: you type `/tax`, answer a few questions, and walk away with a folder ready to send to your accountant.
+The goal: you ask Claude to do your tax, answer a few questions, and walk away with a folder ready to send to your accountant.
 
 ## Industry Guides
 
@@ -42,18 +42,18 @@ claude --plugin-dir ./au-tax-return
 
 ## Usage
 
-```
-/tax                    # Prepares documentation for the most recent completed FY
-/tax 2024-25            # Prepares documentation for a specific financial year
-/tax-sort-receipts      # Sorts downloaded receipt attachments into the correct folders
-```
+Just ask Claude in natural language — the plugin's skills trigger automatically:
+
+- **"Do my tax"** — prepares documentation for the most recent completed financial year
+- **"Do my 2024-25 tax return"** — prepares documentation for a specific financial year
+- **"Sort my downloaded receipts"** — files receipt attachments into the correct deduction folders
 
 ### Workflow
 
-1. Run `/tax` — it asks about your job and work arrangement, connects to Gmail, and scans your emails for receipts and invoices
+1. Ask Claude to "do my tax" — it asks about your job and work arrangement, connects to Gmail, and scans your emails for receipts and invoices
 2. It creates a `tax-return-FY{YEAR}/` folder with a summary, CSV, and `email-references.md` containing clickable Gmail links for each receipt
 3. Click the links to download your receipt attachments and save them to `tax-return-FY{YEAR}/receipts-to-sort/`
-4. Run `/tax-sort-receipts` — it reads each file, matches it to your deductions, corrects any misidentified items, and moves everything to the right category folder (e.g., `receipts/D5-work-related/` for work deductions, `rental/{property}/receipts/plant-equipment/` for rental items)
+4. Ask Claude to "sort my receipts" — it reads each file, matches it to your deductions, corrects any misidentified items, and moves everything to the right category folder (e.g., `receipts/D5-work-related/` for work deductions, `rental/{property}/receipts/plant-equipment/` for rental items)
 
 ### Requirements
 

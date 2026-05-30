@@ -1,17 +1,26 @@
 ---
-description: Sort downloaded receipt attachments into the correct tax return folders
-argument-hint: [tax-return-folder e.g. tax-return-FY2024-25]
+name: tax-sort-receipts
+description: >
+  Sorts and files downloaded Australian tax receipt and invoice attachments into the correct ATO deduction
+  folders. Reads each file in a receipts-to-sort/ folder, matches it to the right item and category using the
+  deductions.csv and rental-schedule.csv that the au-tax-return skill created, renames it clearly, moves it into
+  the correct receipts/ subfolder, flags any receipt that contradicts the CSV, and records the file path back in
+  the CSV. Use whenever the user asks to sort, organise, file, or tidy up their downloaded tax receipts,
+  invoices, or attachments — for example "sort my receipts", "organise my tax receipts", "file my downloaded
+  invoices", or after they mention dropping files into a receipts-to-sort/ folder inside a tax-return-FY* folder.
 ---
+
+# Sort Tax Receipts
 
 The user has downloaded receipt attachments from their email and dropped them into a `receipts-to-sort/` folder inside their tax return folder. Your job is to read each file, match it to the correct category, rename it clearly, and move it to the right place.
 
 ## Find the tax return folder
 
-If an argument was provided, use: $ARGUMENTS
+If the user named a specific tax return folder, use it.
 
-If no argument was provided, look for the most recent `tax-return-FY*` folder in the current working directory.
+Otherwise, look for the most recent `tax-return-FY*` folder in the current working directory.
 
-If no tax return folder exists, tell the user to run `/tax` first.
+If no tax return folder exists, there's nothing to sort yet — tell the user to prepare their tax return first (they just ask, e.g. "do my 2024-25 tax", which runs the au-tax-return skill).
 
 ## Discover the structure
 

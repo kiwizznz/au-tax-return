@@ -7,8 +7,7 @@ description: >
   Division 40 plant & equipment, Division 43 capital works, borrowing costs, and cost base records for CGT.
   Includes industry-specific guidance, starting with IT/tech professionals. Use whenever the user mentions an
   Australian tax return, tax deductions, tax time, the ATO, work-from-home or self-education deductions,
-  depreciation of work equipment, or rental/investment property deductions, or says things like "do my tax" —
-  or when they run the /tax command, which invokes this skill directly.
+  depreciation of work equipment, or rental/investment property deductions, or says things like "do my tax".
 ---
 
 # Australian Tax Return Assistant
@@ -293,7 +292,7 @@ tax-return-FY{YEAR}/
 ├── accountant-email-draft.md          # Ready-to-send email text
 ├── email-references.md                # Clickable links to each receipt email
 ├── receipts-to-sort/                  # Drop downloaded work deduction attachments here
-├── receipts/                          # Organised work deduction attachments (by /tax-sort-receipts)
+├── receipts/                          # Organised work deduction attachments (by the tax-sort-receipts skill)
 │   ├── D1-car-expenses/
 │   ├── D3-memberships/
 │   ├── D4-self-education/
@@ -308,7 +307,7 @@ tax-return-FY{YEAR}/
         ├── ato-rental-guidance.md     # Rental-specific ATO rules
         ├── email-references-rental.md # Links to rental-related receipt emails
         ├── receipts-to-sort/          # Drop downloaded rental attachments here
-        └── receipts/                  # Organised rental attachments (by /tax-sort-receipts)
+        └── receipts/                  # Organised rental attachments (by the tax-sort-receipts skill)
             ├── income/
             ├── expenses/
             ├── plant-equipment/
@@ -511,7 +510,7 @@ The Gmail MCP connector may not support downloading attachments directly. The pr
 Download the attachment from each email below and save it to:
     {full path to tax-return-FY{YEAR}}/receipts-to-sort/
 
-Once all attachments are downloaded, run `/tax-sort-receipts` to
+Once all attachments are downloaded, ask Claude to "sort my receipts" to
 automatically organise them into the correct categories.
 
 ## Has Attachment (download these)
@@ -526,7 +525,7 @@ automatically organise them into the correct categories.
 
 **If the Gmail MCP can download attachments**, do so — save them to the appropriate `receipts/D{X}-{category}/` subfolder named `{vendor}-{brief-description}-{YYYYMMDD}.{ext}`. But don't depend on this working.
 
-**Always create a `receipts-to-sort/` folder** alongside the output folder for the user to drop downloaded attachments into. The `/tax-sort-receipts` command will then organise them.
+**Always create a `receipts-to-sort/` folder** alongside the output folder for the user to drop downloaded attachments into. The tax-sort-receipts skill will then organise them when the user asks (e.g. "sort my receipts").
 
 ### Creating the folder
 
@@ -557,7 +556,7 @@ mkdir -p "tax-return-FY{YEAR}/rental/{property-short-name}/receipts/cost-base"
 Use a short property name derived from the address (e.g., "suburb-unit42" for "42/100 Example Street, Suburb"). Only create receipt subfolders for categories where items were found.
 
 After creating the folder, tell the user the full path clearly:
-> "Your tax return folder is at `{full absolute path}/tax-return-FY{YEAR}/`. Download your receipt attachments from the links in `email-references.md` and save them to the `receipts-to-sort/` subfolder. For rental property receipts, save them to `rental/{property}/receipts-to-sort/`. When you're done, run `/tax-sort-receipts` to organise them."
+> "Your tax return folder is at `{full absolute path}/tax-return-FY{YEAR}/`. Download your receipt attachments from the links in `email-references.md` and save them to the `receipts-to-sort/` subfolder. For rental property receipts, save them to `rental/{property}/receipts-to-sort/`. When you're done, just ask me to sort your receipts and I'll organise them."
 
 ## Step 7: Prepare for Accountant Handoff
 
