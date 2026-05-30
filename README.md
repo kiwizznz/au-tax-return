@@ -42,15 +42,17 @@ claude --plugin-dir ./au-tax-return
 ## Usage
 
 ```
-/tax              # Prepares documentation for the most recent completed FY
-/tax 2024-25      # Prepares documentation for a specific financial year
+/tax                    # Prepares documentation for the most recent completed FY
+/tax 2024-25            # Prepares documentation for a specific financial year
+/tax-sort-receipts      # Sorts downloaded receipt attachments into the correct folders
 ```
 
-The plugin will:
-1. Ask about your job, work arrangement, and any expenses you already know about
-2. Connect to Gmail (via the built-in Gmail MCP connector in Claude Cowork)
-3. Scan your emails for receipts and invoices
-4. Organise everything into a local folder ready for your accountant
+### Workflow
+
+1. Run `/tax` — it asks about your job and work arrangement, connects to Gmail, and scans your emails for receipts and invoices
+2. It creates a `tax-return-FY{YEAR}/` folder with a summary, CSV, and `email-references.md` containing clickable Gmail links for each receipt
+3. Click the links to download your receipt attachments and save them to `tax-return-FY{YEAR}/receipts-to-sort/`
+4. Run `/tax-sort-receipts` — it reads each file, matches it to your deductions, corrects any misidentified items, and moves everything to the right `receipts/D{X}/` folder
 
 ### Requirements
 
