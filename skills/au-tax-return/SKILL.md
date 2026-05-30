@@ -221,8 +221,9 @@ tax-return-FY{YEAR}/
 ├── deduction-summary.md               # Full detailed breakdown (the Step 6 report)
 ├── deductions.csv                     # Structured CSV of all items
 ├── accountant-email-draft.md          # Ready-to-send email text
-├── email-references.md                # Links/references to original emails
-├── receipts/                          # Attachments organised by ATO category
+├── email-references.md                # Clickable links to each receipt email
+├── receipts-to-sort/                  # Drop downloaded attachments here, run /tax-sort-receipts
+├── receipts/                          # Organised attachments (populated by /tax-sort-receipts)
 │   ├── D1-car-expenses/
 │   ├── D3-memberships/
 │   ├── D4-self-education/
@@ -326,21 +327,32 @@ ATO Category,Item Description,Vendor,Date,Total Cost,Work Use %,Claimable Amount
 
 ### Handling attachments
 
-For emails with PDF/image attachments:
-1. Use the Gmail MCP tools to retrieve the attachment
-2. Save it to the appropriate `receipts/D{X}-{category}/` subfolder
-3. Name it: `{vendor}-{brief-description}-{YYYYMMDD}.{ext}` (e.g., `apple-macbook-pro-20240915.pdf`)
-4. Reference the file path in the CSV and summary
+The Gmail MCP connector may not support downloading attachments directly. The primary approach is to give the user **clickable links to each email** so they can download attachments themselves.
 
-For emails where the body IS the receipt (no attachment):
-1. Note in email-references.md with the email subject and date
-2. In the CSV, set Receipt Source to the email subject/date
-3. In the summary, mark as "email body receipt — no PDF"
+**For every item in the deduction list**, include a direct Gmail link in `email-references.md`. Gmail URLs follow this format: `https://mail.google.com/mail/u/0/#inbox/{messageId}` — use whatever email ID or link the Gmail MCP provides.
 
-If attachment retrieval fails or isn't supported by the Gmail MCP:
-1. Note which emails have attachments in email-references.md
-2. Add a checklist at the top of README.md: "Attachments to retrieve manually: [list]"
-3. The user can forward these emails or download attachments themselves
+**email-references.md** should be a practical checklist the user works through:
+
+```markdown
+# Receipts to Download — FY {YEAR}
+
+Download the attachment from each email below and save it to the
+`receipts-to-sort/` folder. Then run `/tax-sort-receipts` to organise
+them into the correct categories.
+
+## Has Attachment (download these)
+- [ ] [Apple — MacBook Pro — $3,999 — 15/09/2024](https://mail.google.com/mail/u/0/#inbox/abc123) → PDF invoice
+- [ ] [Dell — 27" Monitor — $549 — 03/08/2024](https://mail.google.com/mail/u/0/#inbox/def456) → PDF invoice
+- [ ] [Umart — UDM Dream Machine — $649 — 22/10/2024](https://mail.google.com/mail/u/0/#inbox/ghi789) → PDF invoice
+
+## No Attachment (email body is the receipt)
+- Apple App Store subscription — $14.99/mo — no PDF, email body is receipt
+- GitHub Copilot — $19/mo — no PDF, email body is receipt
+```
+
+**If the Gmail MCP can download attachments**, do so — save them to the appropriate `receipts/D{X}-{category}/` subfolder named `{vendor}-{brief-description}-{YYYYMMDD}.{ext}`. But don't depend on this working.
+
+**Always create a `receipts-to-sort/` folder** alongside the output folder for the user to drop downloaded attachments into. The `/tax-sort-receipts` command will then organise them.
 
 ### Creating the folder
 
