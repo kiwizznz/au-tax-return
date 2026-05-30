@@ -4,6 +4,8 @@
 
 **ATO occupation guide:** [IT professionals — income and work-related deductions](https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/guides-for-occupations-and-industries/e-k/it-professionals-income-and-work-related-deductions)
 
+> **Citation date:** May 2026. Applies to FY2024-25 and FY2025-26. Verify current rules at the ATO occupation guide link above.
+
 ---
 
 ## IT-Specific Deductions

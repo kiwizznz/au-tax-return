@@ -4,6 +4,10 @@
 
 **ATO occupation guide:** [URL to the relevant ATO occupation guide, if one exists]
 
+> **Citation date:** [Month Year]. Applies to FY[XXXX-XX] and FY[XXXX-XX]. Verify current rules at the ATO occupation guide link above.
+
+**Note:** Rental/investment property guidance is handled separately by `references/rental-property.md` — do not duplicate rental-specific content in industry guides.
+
 ---
 
 ## Industry-Specific Deductions

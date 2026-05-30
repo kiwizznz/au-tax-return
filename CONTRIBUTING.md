@@ -59,7 +59,7 @@ The most impactful contribution you can make is adding support for a new industr
 ## Other Contributions
 
 - Improvements to the scanning strategy (better email patterns, fewer false positives)
-- Better handling of specific tax scenarios (rental properties, capital gains, crypto)
+- Better handling of specific tax scenarios (capital gains, crypto, HECS/HELP, private health insurance)
 - Clarity and usability improvements to the skill workflow
 - Bug fixes
 - Documentation improvements

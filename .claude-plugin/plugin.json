@@ -1,10 +1,10 @@
 {
   "name": "au-tax-return",
   "version": "1.0.0",
-  "description": "Australian tax return assistant. Scans Gmail for receipts, identifies deductions using ATO rules, and produces a complete folder ready to send to your accountant. Includes industry-specific guidance starting with IT/tech, with community-contributed industry guides.",
+  "description": "Australian tax return assistant. Scans Gmail for receipts, identifies work-related deductions using ATO rules, and produces a complete folder ready to send to your accountant. If you have rental or investment properties, also identifies property income and expenses including Division 40 plant & equipment, Division 43 capital works, borrowing costs, and cost base records for CGT. Includes industry-specific guidance starting with IT/tech, with community-contributed industry guides.",
   "author": {
     "name": "Chris"
   },
   "license": "MIT",
-  "keywords": ["tax", "australia", "ato", "deductions", "gmail", "accountant", "tax-return"]
+  "keywords": ["tax", "australia", "ato", "deductions", "gmail", "accountant", "tax-return", "rental", "investment-property", "depreciation", "cgt"]
 }

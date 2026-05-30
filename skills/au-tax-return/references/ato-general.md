@@ -1,6 +1,8 @@
 # ATO General Rules — All Workers
 
-These rules apply to all Australian individual taxpayers regardless of industry.
+These rules apply to all Australian individual taxpayers regardless of industry. All rules current for FY2024-25 and FY2025-26 unless otherwise noted.
+
+> **Citation date:** May 2026. Verify current rules at [ato.gov.au](https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records).
 
 ## Table of Contents
 1. [Tax Brackets](#tax-brackets)
@@ -37,6 +39,8 @@ Plus 2% Medicare levy on most taxable income.
 - From 1 July 2026: 16% rate drops to 15%
 - From 1 July 2027: drops further to 14%
 
+> Source: [ATO — Tax rates for individuals](https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents) | FY2024-25, FY2025-26
+
 ---
 
 ## Work-From-Home Deductions
@@ -61,6 +65,8 @@ Plus 2% Medicare levy on most taxable income.
 ### Which method to recommend
 - **Fixed rate** for most workers: simpler, fewer records, usually competitive
 - **Actual cost** if high energy bills, expensive internet, or a dedicated room
+
+> Source: [ATO — Working from home expenses](https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/working-from-home-expenses) | FY2024-25, FY2025-26
 
 ---
 
@@ -98,6 +104,9 @@ Plus 2% Medicare levy on most taxable income.
 
 Pro-rate for part-year: multiply by (days held ÷ 365), then by work-use percentage.
 
+> Source: [ATO — Decline in value of depreciating assets](https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/decline-in-value-of-depreciating-assets) | FY2024-25, FY2025-26
+> Source: [ATO — Guide to depreciating assets (TR 2024/3)](https://www.ato.gov.au/law/view/document?DocID=TXR/TR20243/NAT/ATO) | FY2024-25, FY2025-26
+
 ---
 
 ## Car & Travel
@@ -124,6 +133,8 @@ Pro-rate for part-year: multiply by (days held ÷ 365), then by work-use percent
 - Home to regular office (commuting — always private)
 - Even if working overtime or unsociable hours
 
+> Source: [ATO — Car expenses](https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/vehicles-trips-and-fares/motor-vehicle-and-car-expenses) | FY2024-25, FY2025-26
+
 ---
 
 ## Clothing & Uniforms
@@ -139,6 +150,8 @@ Pro-rate for part-year: multiply by (days held ÷ 365), then by work-use percent
 **Laundry (if eligible clothing):**
 - $1/load (work only) or $0.50/load (mixed)
 - Up to $150 without written evidence
+
+> Source: [ATO — Clothing, laundry and dry-cleaning expenses](https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/uniforms-and-clothing/clothing) | FY2024-25, FY2025-26
 
 ---
 
@@ -164,6 +177,8 @@ The education must either:
 - Travel to attend courses/exams/conferences
 - Accommodation for overnight conferences (work portion only)
 
+> Source: [ATO — Self-education expenses](https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/self-education-expenses) | FY2024-25, FY2025-26
+
 ---
 
 ## Phone & Internet
@@ -179,6 +194,8 @@ The education must either:
 - $300 or less + mainly for work: immediate full deduction (work portion)
 - Over $300: depreciate over 3-year effective life (work portion)
 
+> Source: [ATO — Phone, data and internet expenses](https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/phone-data-and-internet-expenses) | FY2024-25, FY2025-26
+
 ---
 
 ## Income Protection Insurance
@@ -191,6 +208,8 @@ The education must either:
 
 Life insurance and TPD premiums are NOT deductible.
 
+> Source: [ATO — Income protection insurance](https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/other-deductions/income-protection-insurance) | FY2024-25, FY2025-26
+
 ---
 
 ## Donations
@@ -202,6 +221,8 @@ Life insurance and TPD premiums are NOT deductible.
 - Bucket collections: up to $10 without receipts
 
 **NOT deductible:** GoFundMe (usually), raffle tickets, event tickets, charity auction purchases.
+
+> Source: [ATO — Gifts and donations](https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/other-deductions/gifts-and-donations) | FY2024-25, FY2025-26
 
 ---
 
@@ -223,6 +244,8 @@ Life insurance and TPD premiums are NOT deductible.
 
 ### Division 293 tax
 - If income + concessional contributions > $250,000: additional 15% tax on excess
+
+> Source: [ATO — Super contributions](https://www.ato.gov.au/individuals-and-families/super/growing-and-keeping-track-of-your-super/caps-on-super-contributions) | FY2024-25, FY2025-26
 
 ---
 
@@ -252,6 +275,8 @@ Life insurance and TPD premiums are NOT deductible.
 
 Family thresholds are double, +$1,500 per dependent child after the first.
 
+> Source: [ATO — Medicare levy surcharge](https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy-surcharge) | FY2024-25, FY2025-26
+
 ---
 
 ## Private Health Insurance Rebate
@@ -264,6 +289,8 @@ Family thresholds are double, +$1,500 per dependent child after the first.
 | Tier 1 | $101,001–$118,000 | ~16.2% |
 | Tier 2 | $118,001–$158,000 | ~8.1% |
 | Tier 3 | $158,001+ | 0% |
+
+> Source: [ATO — Private health insurance rebate](https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/private-health-insurance-rebate) | FY2025-26
 
 ---
 
@@ -285,3 +312,5 @@ Excludes: car expenses, meal allowances, travel allowances (separate rules).
 - Paper or digital (photos, scans, digital receipts)
 - ATO myDeductions app
 - Spreadsheets and diary records
+
+> Source: [ATO — Keeping your tax records](https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/records-you-need-to-keep/keeping-your-tax-records) | FY2024-25, FY2025-26
